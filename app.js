@@ -1,8 +1,9 @@
-import express from "express";
-import bodyParser from "body-parser";
-import _ from "lodash";
+const express = require('express');
+const bodyParser = require('body-parser');
+const _ = require('lodash');
+require('dotenv').config();
 const app=express();
-const port=3000;
+const port=process.env.Port;
 app.use(express.static("public"));
 var posts=[];
 app.use(bodyParser.urlencoded({extended:true}));
@@ -10,7 +11,7 @@ const homeStartingContent = "Lacus vel facilisis volutpat est velit egestas dui 
 const aboutContent = "Hello, I'm Shivansh Singh, currently in my second year of undergraduate studies at National Institute of Technology Hamirpur. My passion lies in the fascinating world of web development. As I continue my educational journey, I've been focusing on expanding my understanding and proficiency in building interactive, effective websites. The joy I derive from learning is a driving force as I traverse the dynamic landscape of web development, continuously exploring new technologies, frameworks, and coding techniques. Beyond the confines of my coursework, I frequently immerse myself in personal projects and collaborations, applying theoretical concepts to practical, real-world scenarios. I truly believe that there's no hurdle too great if one has the passion and the grit to overcome it. As a budding developer, I am ready and excited for the challenges and learning experiences that lie ahead.";
 const contactContent = "Scelerisque eleifend donec pretium vulputate sapien. Rhoncus urna neque viverra justo nec ultrices. Arcu dui vivamus arcu felis bibendum. Consectetur adipiscing elit duis tristique. Risus viverra adipiscing at in tellus integer feugiat. Sapien nec sagittis aliquam malesuada bibendum arcu vitae. Consequat interdum varius sit amet mattis. Iaculis nunc sed augue lacus. Interdum posuere lorem ipsum dolor sit amet consectetur adipiscing elit. Pulvinar elementum integer enim neque. Ultrices gravida dictum fusce ut placerat orci nulla. Mauris in aliquam sem fringilla ut morbi tincidunt. Tortor posuere ac ut consequat semper viverra nam libero.";
 app.listen(port,function(req,res){
-     console.log("Server Started");
+     console.log('Server Started at port '+port);
 });
 app.get("/",function(req,res){
    res.render("home.ejs",{start:homeStartingContent,posts:posts});
